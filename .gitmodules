@@ -1,0 +1,3 @@
+[submodule "CDN"]
+	path = TantalumCDN
+	url = https://github.com/Tharow-Services/Tantalum-CDN.git
