@@ -184,13 +184,13 @@ public class ConfigManager {
                     .addAll(ConfigManager.getConfigItem("errorReporting.ignoredMessages", new ArrayList<>()));
 
             // not initiated, so start it up
-            if (!ErrorReporting.sentryInitialised) {
-                ErrorReporting.enable();
+            if (!ErrorReporting.initialised) {
+                ErrorReporting.initialise();
             }
         }
 
         // error reporting disabled, but we have a client initated, so close it
-        if (!ConfigManager.getConfigItem("errorReporting.enabled", true) && ErrorReporting.sentryInitialised) {
+        if (!ConfigManager.getConfigItem("errorReporting.enabled", true) && ErrorReporting.initialised) {
             ErrorReporting.disable();
         }
     }

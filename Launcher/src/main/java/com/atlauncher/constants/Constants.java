@@ -27,6 +27,7 @@ import com.atlauncher.App;
 import com.atlauncher.data.LauncherVersion;
 import com.atlauncher.data.ScreenResolution;
 import com.atlauncher.utils.OS;
+import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("MutablePublicArray")
 public class Constants {
@@ -54,16 +55,14 @@ public class Constants {
 
     // Launcher config
     public static final LauncherVersion VERSION;
-    public static final String LAUNCHER_NAME = "ATLauncher";
-    public static final String LAUNCHER_WEBSITE = "https://atlauncher.com";
+    public static final String LAUNCHER_NAME = "Tantalum";
+    public static final String LAUNCHER_WEBSITE = "https://tharow.net/tantalum";
     public static final String DEFAULT_THEME_CLASS = "com.atlauncher.themes.Dark";
-    public static final String GA_TRACKING_ID = "UA-88820616-7";
     public static final String CROWDIN_URL = "https://crowdin.com/project/atlauncher";
-    public static final String SENTRY_DSN = "https://499c3bbc55cb434dad42a3ac670e2c91@sentry.io/1498519";
 
     // Launcher domains, endpoints, etc
     private static final String DEFAULT_BASE_LAUNCHER_PROTOCOL = "https://";
-    private static final String DEFAULT_BASE_LAUNCHER_DOMAIN = "atlauncher.com";
+    private static final String DEFAULT_BASE_LAUNCHER_DOMAIN = "tharow.net";
 
     public static String BASE_LAUNCHER_PROTOCOL = DEFAULT_BASE_LAUNCHER_PROTOCOL;
     public static String BASE_LAUNCHER_DOMAIN = DEFAULT_BASE_LAUNCHER_DOMAIN;
@@ -82,26 +81,18 @@ public class Constants {
         + "/api/create-v2";
 
     // CDN domains, endpoints, etc
-    private static final String DEFAULT_BASE_CDN_PROTOCOL = "https://";
-    private static final String DEFAULT_BASE_CDN_DOMAIN = "download.nodecdn.net";
-    public static final String BASE_CDN_PATH = "/containers/atl";
+    private static final String DEFAULT_CDN_HOST = "cdn." + BASE_LAUNCHER_DOMAIN;
+    public static final String BASE_CDN_PATH = "/";
 
-    public static String BASE_CDN_PROTOCOL = DEFAULT_BASE_CDN_PROTOCOL;
-    public static String BASE_CDN_DOMAIN = DEFAULT_BASE_CDN_DOMAIN;
-    public static String DOWNLOAD_SERVER = DEFAULT_BASE_CDN_PROTOCOL + DEFAULT_BASE_CDN_DOMAIN + BASE_CDN_PATH;
-    public static String DOWNLOAD_HOST = DEFAULT_BASE_CDN_DOMAIN;
-
-    // Mixpanel analytics
-    // if you fork or modify this launcher, you must not use this token and get your
-    // own
-    public static final String MIXPANEL_PROJECT_TOKEN = "3cb6581cb284c1a1b6e189fef3410495";
-    public static final String MIXPANEL_BASE_URL = "https://api.mixpanel.com";
-
+    public static String BASE_CDN_PROTOCOL = DEFAULT_BASE_LAUNCHER_PROTOCOL;
+    public static String BASE_CDN_DOMAIN = DEFAULT_CDN_HOST;
+    public static String DOWNLOAD_SERVER = DEFAULT_BASE_LAUNCHER_PROTOCOL + DEFAULT_CDN_HOST + BASE_CDN_PATH;
+    public static String DOWNLOAD_HOST = DEFAULT_CDN_HOST;
     // CurseForge domains, endpoints, config, etc
     public static final String CURSEFORGE_CORE_API_URL = "https://api.curseforge.com/v1";
     // if you fork or modify this launcher, you must not use this API key and apply
     // for your own
-    public static final String CURSEFORGE_CORE_API_KEY = "$2a$10$.7CSxLm/lnj5lCBSM5jGQ.3SICSX4j9r661AgoB1Rc4Nw8jCMKcv2";
+    public static final String CURSEFORGE_CORE_API_KEY = "";
     public static final String CURSEFORGE_API_KEY_HEADER = "x-api-key";
     public static final String CURSEFORGE_CORE_API_HOST = "api.curseforge.com";
     public static final String CURSEFORGE_FILE_DOWNLOAD_HOST = "edge.forgecdn.net";
@@ -142,8 +133,6 @@ public class Constants {
 
     // Technic domains, endpoints, config, etc
     public static final String TECHNIC_API_URL = "https://api.technicpack.net";
-    public static final String TECHNIC_HOST = "api.technicpack.net";
-    public static final int TECHNIC_PAGINATION_SIZE = 20;
 
     // Forge domains, endpoints, etc
     public static final String FORGE_MAVEN = "https://maven.minecraftforge.net/net/minecraftforge/forge";
@@ -169,13 +158,8 @@ public class Constants {
     public static final String QUILT_HOST = "maven.quiltmc.org";
 
     // Minecraft domains, endpoints, etc
-    public static final String LAUNCHER_META_MINECRAFT = "https://launchermeta.mojang.com";
     public static final String MINECRAFT_LIBRARIES = "https://libraries.minecraft.net/";
     public static final String MINECRAFT_RESOURCES = "https://resources.download.minecraft.net";
-    public static final String MINECRAFT_VERSION_MANIFEST_URL = LAUNCHER_META_MINECRAFT
-        + "/mc/game/version_manifest.json";
-    public static final String MINECRAFT_JAVA_RUNTIME_URL = LAUNCHER_META_MINECRAFT
-        + "/v1/products/java-runtime/2ec0cc96c44e5a76b9c8b7c39df7210883d12871/all.json";
     public static final int MINECRAFT_DEFAULT_SERVER_PORT = 25565;
 
     // Misc
@@ -199,29 +183,7 @@ public class Constants {
 
     public static final String DEFAULT_JAVA_PARAMETERS = "-XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M";
 
-    // Custom for ATLauncher Microsoft login constants
-    // if you fork or modify this launcher, you must not use this Client ID
-    public static final String MICROSOFT_LOGIN_CLIENT_ID = "90890812-00d1-48a8-8d3f-38465ef43b58";
-    public static final int MICROSOFT_LOGIN_REDIRECT_PORT = 28562;
-    public static final String MICROSOFT_LOGIN_REDIRECT_URL = "http://127.0.0.1:" + MICROSOFT_LOGIN_REDIRECT_PORT;
-    public static final String MICROSOFT_LOGIN_REDIRECT_URL_ENCODED = "http%3A%2F%2F127.0.0.1%3A"
-        + MICROSOFT_LOGIN_REDIRECT_PORT;
-    public static final String[] MICROSOFT_LOGIN_SCOPES = { "XboxLive.signin", "offline_access" };
-
-    // General Microsoft login constants
-    public static final String MICROSOFT_LOGIN_URL = "https://login.live.com/oauth20_authorize.srf" + "?client_id="
-        + MICROSOFT_LOGIN_CLIENT_ID
-        + "&prompt=select_account&cobrandid=8058f65d-ce06-4c30-9559-473c9275a65d&response_type=code" + "&scope="
-        + String.join("%20", MICROSOFT_LOGIN_SCOPES) + "&redirect_uri=" + MICROSOFT_LOGIN_REDIRECT_URL_ENCODED;
-    public static final String MICROSOFT_DEVICE_CODE_URL = "https://login.microsoftonline.com/consumers/oauth2/v2.0/devicecode";
-    public static final String MICROSOFT_AUTH_TOKEN_URL = "https://login.microsoftonline.com/consumers/oauth2/v2.0/token";
-    public static final String MICROSOFT_XBL_AUTH_TOKEN_URL = "https://user.auth.xboxlive.com/user/authenticate";
-    public static final String MICROSOFT_XSTS_AUTH_TOKEN_URL = "https://xsts.auth.xboxlive.com/xsts/authorize";
-    public static final String MICROSOFT_MINECRAFT_LOGIN_URL = "https://api.minecraftservices.com/launcher/login";
-    public static final String MICROSOFT_MINECRAFT_PROFILE_URL = "https://api.minecraftservices.com/minecraft/profile";
-    public static final String MICROSOFT_MINECRAFT_ENTITLEMENTS_URL = "https://api.minecraftservices.com/entitlements/license";
-
-    public static void setBaseLauncherDomain(String baseLauncherDomain) {
+    public static void setBaseLauncherDomain(@NotNull String baseLauncherDomain) {
         String host = baseLauncherDomain.replace("https://", "").replace("http://", "");
 
         BASE_LAUNCHER_PROTOCOL = baseLauncherDomain.startsWith("https://") ? "https://" : "http://";
@@ -234,7 +196,7 @@ public class Constants {
         PASTE_API_URL = BASE_LAUNCHER_PROTOCOL + "paste." + host + "/api/create-v2";
     }
 
-    public static void setBaseCdnDomain(String baseCdnDomain) {
+    public static void setBaseCdnDomain(@NotNull String baseCdnDomain) {
         String host = baseCdnDomain.replace("https://", "").replace("http://", "");
 
         BASE_CDN_PROTOCOL = baseCdnDomain.startsWith("https://") ? "https://" : "http://";

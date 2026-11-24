@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ATLauncher.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ATLauncher.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ATLauncher.test.iml" filepath="$PROJECT_DIR$/.idea/modules/ATLauncher.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/Server/Server.iml" filepath="$PROJECT_DIR$/Server/Server.iml" />
     </modules>
   </component>

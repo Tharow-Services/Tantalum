@@ -290,6 +290,8 @@ public class App {
             }
         }
 
+        ErrorReporting.initialise();
+
         // Initialize the error reporting unless disabled by command line
         if (!disableErrorReporting) {
             ErrorReporting.enable();
